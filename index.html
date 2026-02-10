@@ -10,11 +10,14 @@
     <form>
         <div>
             <div><label>Email:</label></div>
-            <input type="email" name="email" id="email" onchange="validateFields()" placeholder="Seu@email.com"/>
+            <input type="email" name="email" id="email" onchange="onChangeEmail()" placeholder="Seu@email.com"/>
+            <div class="error" id="email-required-error">Email is mandatory</div>
+            <div class="error" id="email-invalid-error">Email is invalid</div>
         </div>
         <div>
             <div><label>Password:</label></div>
-            <input type="password" name="password" id="password" onchange="validateFields()" placeholder="Password"/>
+            <input type="password" name="password" id="password" onchange="onChangePassword()" placeholder="Password"/>
+            <div class="error" id="password-required-error">Password is mandatory</div>
         </div>
         <div>
             <button type="button" class="clear" id="recover-password-buton" disabled="disabled">Forgot password</button>
@@ -30,36 +33,6 @@
 
 <link rel="stylesheet" href="index.css"/>
 
-<script>
-    function validateFields(){
-        const emailValid = isEmailValid();
-        document.getElementById('recover-password-buton').disabled = !emailValid;
-
-        const passwordValid = isPasswordValid();
-        document.getElementById('login-button').disabled = !emailValid || !passwordValid;
-        //pegar o valor da senha
-        //caso email ou senha invalidos, desabilitar botão de login
-        //caso contrario, habilitar botão de login
-    }  
-
-    function isEmailValid() {
-        const email = document.getElementById("email").value;
-        if (!email) {
-            return false;
-        }
-        return validateEmail(email);
-    }
-
-    function isPasswordValid() {
-    const password = document.getElementById("password").value;
-    return password.length >= 1;
-}
-
-
-
-    function validateEmail(email) {
-        return /\S+@\S+\.\S+/.test(email);
-    }
-</script>
+<script src="index.js"></script>
 
 </html>
